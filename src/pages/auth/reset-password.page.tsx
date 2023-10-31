@@ -1,7 +1,7 @@
 import Layout from "src/core/layouts/Layout"
-import { LabeledTextField } from "src/core/components/LabeledTextField"
-import { Form, FORM_ERROR } from "src/core/components/Form"
-import { ResetPassword } from "src/features/auth/schemas"
+
+import { FORM_ERROR } from "src/core/components/Form"
+
 import resetPassword from "src/features/auth/mutations/resetPassword"
 import { BlitzPage, Routes } from "@blitzjs/next"
 import { useRouter } from "next/router"
@@ -9,6 +9,7 @@ import { useMutation } from "@blitzjs/rpc"
 import Link from "next/link"
 import { assert } from "blitz"
 import { Button, PasswordInput, TextInput } from "@mantine/core"
+import { useForm } from "@mantine/form"
 
 const ResetPasswordPage: BlitzPage = () => {
   const router = useRouter()
@@ -64,23 +65,6 @@ const ResetPasswordPage: BlitzPage = () => {
 
             <Button type="submit">Reset Password</Button>
           </form>
-          // <Form
-          //   submitText="Reset Password"
-          //   schema={ResetPassword}
-          //   initialValues={{
-          //     password: "",
-          //     passwordConfirmation: "",
-          //     token,
-          //   }}
-          //   onSubmit={onSubmit}
-          // >
-          //   <LabeledTextField name="password" label="New Password" type="password" />
-          //   <LabeledTextField
-          //     name="passwordConfirmation"
-          //     label="Confirm New Password"
-          //     type="password"
-          //   />
-          // </Form>
         )}
       </div>
     </Layout>
