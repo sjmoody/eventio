@@ -6,14 +6,13 @@ import { Routes } from "@blitzjs/next"
 import { useForm } from "@mantine/form"
 import { Button, PasswordInput, TextInput } from "@mantine/core"
 import { Vertical } from "mantine-layout-components"
-import { FORM_ERROR } from "src/core/components/Form"
 
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void
 }
 
 export const LoginForm = (props: LoginFormProps) => {
-  const [loginMutation] = useMutation(login)
+  const [$Mutation] = useMutation(login)
 
   const form = useForm({
     initialValues: {
@@ -27,19 +26,8 @@ export const LoginForm = (props: LoginFormProps) => {
   })
 
   const onSubmit = async (values) => {
-    try {
-      const user = await loginMutation(values)
-      props.onSuccess?.(user)
-    } catch (error: any) {
-      if (error instanceof AuthenticationError) {
-        return { [FORM_ERROR]: "Sorry, those credentials are invalid" }
-      } else {
-        return {
-          [FORM_ERROR]:
-            "Sorry, we had an unexpected error. Please try again. - " + error.toString(),
-        }
-      }
-    }
+    const user = await $Mutation(values)
+    props.onSuccess?.(user)
   }
 
   return (
