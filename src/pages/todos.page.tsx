@@ -7,9 +7,12 @@ import { Button, Input, List, Loader, Text } from "@mantine/core"
 import addTodo from "src/features/todos/mutations/addTodo"
 import { notifications } from "@mantine/notifications"
 import { Vertical } from "mantine-layout-components"
+import { useCurrentUser } from "@/features/users/hooks/useCurrentUser"
 
 const Todos = () => {
   const [todos] = useQuery(getTodos, {})
+
+  const user = useCurrentUser()
 
   const [todoTitle, setTodoTitle] = useState("")
 
@@ -24,6 +27,7 @@ const Todos = () => {
 
   return (
     <Vertical>
+      {user && <Text>Hello {user.name} here are your todos</Text>}
       <Input
         value={todoTitle}
         onChange={(e) => setTodoTitle(e.currentTarget.value)}
