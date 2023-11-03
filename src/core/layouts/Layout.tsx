@@ -1,11 +1,25 @@
 import Head from "next/head"
-import React, { FC } from "react"
-import { BlitzLayout } from "@blitzjs/next"
+import React, { Suspense } from "react"
+import { BlitzLayout, Routes } from "@blitzjs/next"
+import { Horizontal, Vertical } from "mantine-layout-components"
+import { Anchor, AppShell, Button, Footer, Header, Loader, Navbar, Text } from "@mantine/core"
+import Link from "next/link"
+import { useMutation } from "@blitzjs/rpc"
+import logout from "src/features/auth/mutations/logout"
+import { useCurrentUser } from "src/features/users/hooks/useCurrentUser"
 
-const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
-  title,
-  children,
-}) => {
+type Props = {
+  title?: string
+  children?: React.ReactNode
+  maxWidth?: number
+}
+
+const Layout: BlitzLayout<Props> = ({ title, maxWidth = 800, children }) => {
+  const thisYear = new Date().getFullYear()
+  const [logoutMutation] = useMutation(logout)
+
+  const user = useCurrentUser()
+
   return (
     <>
       <Head>
@@ -13,7 +27,63 @@ const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {children}
+      <AppShell
+        padding="md"
+        // navbar={
+        //   <Navbar width={{ base: 300 }} height={500} p="xs">
+        //     {/* Navbar content */}
+        //   </Navbar>
+        // }
+        header={
+          <Header height={55} p="xs">
+            <Horizontal fullH spaceBetween fullW>
+              <Anchor
+                underline={false}
+                color="gray.3"
+                component={Link}
+                href={Routes.Home()}
+                fw="bold"
+              >
+                Eventio
+              </Anchor>
+
+              {user && (
+                <Horizontal>
+                  <Text>{user.name}</Text>
+                  <Button
+                    size="xs"
+                    variant="light"
+                    onClick={async () => {
+                      await logoutMutation()
+                    }}
+                  >
+                    Logout
+                  </Button>
+                </Horizontal>
+              )}
+            </Horizontal>
+          </Header>
+        }
+        footer={
+          <Footer height={30}>
+            <Horizontal fullW fullH center>
+              <Text fz="xs" color="dimmed">
+                copyright {thisYear}
+              </Text>
+            </Horizontal>
+          </Footer>
+        }
+        styles={(theme) => ({
+          main: {
+            backgroundColor:
+              theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[0],
+          },
+        })}
+      >
+        <Vertical fullW fullH>
+          <Suspense fallback={<Loader />}>{children}</Suspense>
+        </Vertical>
+      </AppShell>
     </>
   )
 }
