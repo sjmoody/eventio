@@ -8,9 +8,11 @@ import addTodo from "src/features/todos/mutations/addTodo"
 import { Horizontal, Vertical } from "mantine-layout-components"
 import { useCurrentUser } from "@/features/users/hooks/useCurrentUser"
 import toggleTodo from "@/features/todos/mutations/toggleTodo"
+import cleanCompleted from "@/features/todos/mutations/cleanCompleted"
 
 const Todo = ({ todo }) => {
   const [$toggleTodo] = useMutation(toggleTodo)
+
   return (
     <Horizontal>
       <Checkbox checked={todo.done} onClick={() => $toggleTodo({ id: todo.id })}></Checkbox>
@@ -27,6 +29,7 @@ const Todos = () => {
   const [todoTitle, setTodoTitle] = useState("")
 
   const [$addTodo] = useMutation(addTodo, {})
+  const [$cleanCompleted] = useMutation(cleanCompleted, {})
 
   return (
     <Vertical>
@@ -44,6 +47,13 @@ const Todos = () => {
         }}
       >
         Create a todo
+      </Button>
+      <Button
+        onClick={async () => {
+          $cleanCompleted({})
+        }}
+      >
+        Clean Completed
       </Button>
       <List>
         {todos.map((todo) => (

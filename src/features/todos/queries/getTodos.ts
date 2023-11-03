@@ -14,6 +14,10 @@ export default resolver.pipe(
       where: {
         userId,
       },
+      orderBy: {
+        createdAt: "asc",
+      },
+
       select: {
         id: true,
         title: true,
