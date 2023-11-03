@@ -1,10 +1,16 @@
 import { SecurePassword } from "@blitzjs/auth/secure-password"
 import { AuthenticationError } from "blitz"
 import db from "db"
-import { Login } from "../schemas"
+import { z } from "zod"
+import { email } from "../schemas"
+
+export const Input = z.object({
+  email,
+  password: z.string(),
+})
 
 export const authenticateUser = async (rawEmail: string, rawPassword: string) => {
-  const { email, password } = Login.parse({ email: rawEmail, password: rawPassword })
+  const { email, password } = Input.parse({ email: rawEmail, password: rawPassword })
   const user = await db.user.findFirst({ where: { email } })
   if (!user) throw new AuthenticationError()
 
