@@ -7,13 +7,14 @@
     "studio": "blitz prisma studio",
     "db:migrate": "npx blitz prisma migrate dev",
     "db:studio": "npx blitz prisma studio",
-    "build": "npx blitz prisma migrate deploy && npx blitz prisma generate && npx blitz build"
+    "build": "npx blitz prisma migrate deploy && npx blitz prisma generate && npx blitz build",
+    "railway:dev": "railway run npx dev"
   },
   "prisma": {
     "schema": "db/schema.prisma"
   },
   "prettier": {
-    "semi": false,
+    "semi": true,
     "printWidth": 100
   },
   "lint-staged": {

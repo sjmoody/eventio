@@ -1,35 +1,46 @@
-import React, { Suspense, useState } from "react"
-import { BlitzPage } from "@blitzjs/next"
-import Layout from "src/core/layouts/Layout"
-import { useMutation, useQuery } from "@blitzjs/rpc"
-import getTodos from "src/features/todos/queries/getTodos"
-import { Button, Checkbox, Input, List, Loader, Text } from "@mantine/core"
-import addTodo from "src/features/todos/mutations/addTodo"
-import { Horizontal, Vertical } from "mantine-layout-components"
-import { useCurrentUser } from "@/features/users/hooks/useCurrentUser"
-import toggleTodo from "@/features/todos/mutations/toggleTodo"
-import cleanCompleted from "@/features/todos/mutations/cleanCompleted"
+import React, { Suspense, useState } from "react";
+import { BlitzPage } from "@blitzjs/next";
+import Layout from "src/core/layouts/Layout";
+import { useMutation, useQuery } from "@blitzjs/rpc";
+import getTodos from "src/features/todos/queries/getTodos";
+import { Button, Checkbox, Input, List, Loader, Text } from "@mantine/core";
+import addTodo from "src/features/todos/mutations/addTodo";
+import { Horizontal, Vertical } from "mantine-layout-components";
+import { useCurrentUser } from "@/features/users/hooks/useCurrentUser";
+import toggleTodo from "@/features/todos/mutations/toggleTodo";
+import cleanCompleted from "@/features/todos/mutations/cleanCompleted";
+import { ReactFC } from "~/types";
+import { PromiseReturnType } from "blitz";
 
-const Todo = ({ todo }) => {
-  const [$toggleTodo] = useMutation(toggleTodo)
+type TodosType = PromiseReturnType<typeof getTodos>;
+type TodoType = TodosType[number];
+
+const Todo: ReactFC<{
+  todo: TodoType;
+}> = ({ todo }) => {
+  const [$toggleTodo, { isLoading }] = useMutation(toggleTodo);
 
   return (
     <Horizontal>
-      <Checkbox checked={todo.done} onClick={() => $toggleTodo({ id: todo.id })}></Checkbox>
+      <Checkbox
+        disabled={isLoading}
+        checked={todo.done}
+        onClick={() => $toggleTodo({ id: todo.id })}
+      ></Checkbox>
       <Text>{todo.title}</Text>
     </Horizontal>
-  )
-}
+  );
+};
 
 const Todos = () => {
-  const [todos] = useQuery(getTodos, {})
+  const [todos] = useQuery(getTodos, {});
 
-  const user = useCurrentUser()
+  const user = useCurrentUser();
 
-  const [todoTitle, setTodoTitle] = useState("")
+  const [todoTitle, setTodoTitle] = useState("");
 
-  const [$addTodo] = useMutation(addTodo, {})
-  const [$cleanCompleted] = useMutation(cleanCompleted, {})
+  const [$addTodo, { isLoading }] = useMutation(addTodo, {});
+  const [$cleanCompleted] = useMutation(cleanCompleted, {});
 
   return (
     <Vertical>
@@ -40,17 +51,18 @@ const Todos = () => {
         placeholder="enter todo title"
       />
       <Button
+        loading={isLoading}
         onClick={async () => {
           await $addTodo({
             todoTitle: todoTitle,
-          })
+          });
         }}
       >
         Create a todo
       </Button>
       <Button
         onClick={async () => {
-          $cleanCompleted({})
+          $cleanCompleted({});
         }}
       >
         Clean Completed
@@ -61,17 +73,15 @@ const Todos = () => {
         ))}
       </List>
     </Vertical>
-  )
-}
+  );
+};
 
 export const TodosPage: BlitzPage = () => {
   return (
     <Layout>
-      <Suspense fallback={<Loader />}>
-        <Todos />
-      </Suspense>
+      <Todos />
     </Layout>
-  )
-}
+  );
+};
 
-export default TodosPage
+export default TodosPage;
