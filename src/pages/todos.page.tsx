@@ -11,6 +11,8 @@ import toggleTodo from "@/features/todos/mutations/toggleTodo";
 import cleanCompleted from "@/features/todos/mutations/cleanCompleted";
 import { ReactFC } from "~/types";
 import { PromiseReturnType } from "blitz";
+import { useForm, zodResolver } from "@mantine/form";
+import { TodoFormType, TodoInput } from "@/features/todos/schemas";
 
 type TodosType = PromiseReturnType<typeof getTodos>;
 type TodoType = TodosType[number];
@@ -25,7 +27,9 @@ const Todo: ReactFC<{
       <Checkbox
         disabled={isLoading}
         checked={todo.done}
-        onClick={() => $toggleTodo({ id: todo.id })}
+        onClick={async () => {
+          await $toggleTodo({ id: todo.id });
+        }}
       ></Checkbox>
       <Text>{todo.title}</Text>
     </Horizontal>
@@ -33,33 +37,29 @@ const Todo: ReactFC<{
 };
 
 const Todos = () => {
-  const [todos] = useQuery(getTodos, {});
-
   const user = useCurrentUser();
-
-  const [todoTitle, setTodoTitle] = useState("");
+  const [todos] = useQuery(getTodos, {});
 
   const [$addTodo, { isLoading }] = useMutation(addTodo, {});
   const [$cleanCompleted] = useMutation(cleanCompleted, {});
 
+  const form = useForm<TodoFormType>({
+    validate: zodResolver(TodoInput),
+  });
+
   return (
     <Vertical>
       {user && <Text>Hello {user.name} here are your todos</Text>}
-      <Input
-        value={todoTitle}
-        onChange={(e) => setTodoTitle(e.currentTarget.value)}
-        placeholder="enter todo title"
-      />
-      <Button
-        loading={isLoading}
-        onClick={async () => {
-          await $addTodo({
-            todoTitle: todoTitle,
-          });
-        }}
+      <form
+        onSubmit={form.onSubmit(async (values) => {
+          await $addTodo(values);
+        })}
       >
-        Create a todo
-      </Button>
+        <Input {...form.getInputProps("todoTitle")} placeholder="enter todo title" />
+        <Button type="submit" loading={isLoading}>
+          Create a todo
+        </Button>
+      </form>
       <Button
         onClick={async () => {
           $cleanCompleted({});

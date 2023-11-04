@@ -1,18 +1,14 @@
-import { resolver } from "@blitzjs/rpc"
-import { z } from "zod"
-import db from "~/db"
-
-const Input = z.object({
-  todoTitle: z.string(),
-})
+import { resolver } from "@blitzjs/rpc";
+import db from "~/db";
+import { TodoInput } from "../schemas";
 
 export default resolver.pipe(
-  resolver.zod(Input),
+  resolver.zod(TodoInput),
   resolver.authorize(),
   async (params, { session: { userId } }) => {
-    const { todoTitle } = params
+    const { todoTitle } = params;
 
-    console.log("creating a todo with title", todoTitle)
+    console.log("creating a todo with title", todoTitle);
 
     const todo = db.todo.create({
       data: {
@@ -23,8 +19,8 @@ export default resolver.pipe(
           },
         },
       },
-    })
+    });
 
-    return todo
+    return todo;
   }
-)
+);

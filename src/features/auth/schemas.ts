@@ -19,3 +19,8 @@ export const SignupInput = z.object({
     message: "You must agree to the terms and conditions",
   }),
 });
+
+export const LoginInput = z.object({
+  email,
+  password,
+});

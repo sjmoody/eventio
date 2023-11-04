@@ -18,18 +18,19 @@ import { useMutation } from "@blitzjs/rpc";
 import login from "src/features/auth/mutations/login";
 import signup from "src/features/auth/mutations/signup";
 import { Vertical } from "mantine-layout-components";
-import { SignupInput } from "@/features/auth/schemas";
+import { LoginInput, SignupInput } from "@/features/auth/schemas";
 import { z } from "zod";
 
 type SignupFormType = z.infer<typeof SignupInput>;
+type LoginFormType = z.infer<typeof LoginInput>;
 
-export const bindCheckboxToForm = (form: any, key: string) => {
-  const inputProps = form.getInputProps(key);
-  return {
-    ...inputProps,
-    checked: inputProps.value,
-  };
-};
+// export const bindCheckboxToForm = (form: any, key: string) => {
+//   const inputProps = form.getInputProps(key);
+//   return {
+//     ...inputProps,
+//     checked: inputProps.value,
+//   };
+// };
 
 export function MainAuthenticationForm(props: PaperProps) {
   const [type, toggle] = useToggle(["login", "register"]);
@@ -37,10 +38,12 @@ export function MainAuthenticationForm(props: PaperProps) {
   const [$signup, { isLoading: isSigningUp }] = useMutation(signup);
 
   const form = useForm<SignupFormType>({
-    validate: zodResolver(SignupInput),
+    validate: type === "register" ? zodResolver(SignupInput) : zodResolver(LoginInput),
     validateInputOnBlur: true,
     validateInputOnChange: ["terms"],
   });
+
+  // add onSubmit here?
 
   const loading = isLoggingIn || isSigningUp;
 
@@ -96,8 +99,9 @@ export function MainAuthenticationForm(props: PaperProps) {
 
             {type === "register" && (
               <Checkbox
-                {...bindCheckboxToForm(form, "terms")}
+                // {...bindCheckboxToForm(form, "terms")}
                 label="I accept terms and conditions"
+                {...form.getInputProps("terms", { type: "checkbox" })}
               />
             )}
           </Stack>
