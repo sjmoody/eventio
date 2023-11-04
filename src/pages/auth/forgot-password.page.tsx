@@ -1,15 +1,12 @@
-import Layout from "src/core/layouts/Layout"
-
-import { FORM_ERROR } from "src/core/components/Form"
-
-import forgotPassword from "src/features/auth/mutations/forgotPassword"
-import { useMutation } from "@blitzjs/rpc"
-import { BlitzPage } from "@blitzjs/next"
-import { Button, TextInput } from "@mantine/core"
-import { useForm } from "@mantine/form"
+import Layout from "src/core/layouts/Layout";
+import forgotPassword from "src/features/auth/mutations/forgotPassword";
+import { useMutation } from "@blitzjs/rpc";
+import { BlitzPage } from "@blitzjs/next";
+import { Button, TextInput } from "@mantine/core";
+import { useForm } from "@mantine/form";
 
 const ForgotPasswordPage: BlitzPage = () => {
-  const [forgotPasswordMutation, { isSuccess }] = useMutation(forgotPassword)
+  const [forgotPasswordMutation, { isSuccess }] = useMutation(forgotPassword);
 
   const form = useForm({
     initialValues: {
@@ -19,17 +16,18 @@ const ForgotPasswordPage: BlitzPage = () => {
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
     },
-  })
+  });
 
   let onSubmit = async (values) => {
-    try {
-      await forgotPasswordMutation(values)
-    } catch (error: any) {
-      return {
-        [FORM_ERROR]: "Sorry, we had an unexpected error. Please try again.",
-      }
-    }
-  }
+    await forgotPasswordMutation(values);
+    // try {
+    //   await forgotPasswordMutation(values)
+    // } catch (error: any) {
+    //   return {
+    //     [FORM_ERROR]: "Sorry, we had an unexpected error. Please try again.",
+    //   }
+    // }
+  };
 
   return (
     <Layout title="Forgot Your Password?">
@@ -55,7 +53,7 @@ const ForgotPasswordPage: BlitzPage = () => {
         </form>
       )}
     </Layout>
-  )
-}
+  );
+};
 
-export default ForgotPasswordPage
+export default ForgotPasswordPage;

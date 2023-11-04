@@ -1,17 +1,16 @@
-import { FORM_ERROR } from "src/core/components/Form"
-import signup from "src/features/auth/mutations/signup"
+import signup from "src/features/auth/mutations/signup";
 
-import { useMutation } from "@blitzjs/rpc"
-import { Vertical } from "mantine-layout-components"
-import { Button, PasswordInput, TextInput, Title } from "@mantine/core"
-import { useForm } from "@mantine/form"
+import { useMutation } from "@blitzjs/rpc";
+import { Vertical } from "mantine-layout-components";
+import { Button, PasswordInput, TextInput, Title } from "@mantine/core";
+import { useForm } from "@mantine/form";
 
 type SignupFormProps = {
-  onSuccess?: () => void
-}
+  onSuccess?: () => void;
+};
 
 export const SignupForm = (props: SignupFormProps) => {
-  const [signupMutation] = useMutation(signup)
+  const [signupMutation] = useMutation(signup);
 
   const form = useForm({
     initialValues: {
@@ -23,21 +22,23 @@ export const SignupForm = (props: SignupFormProps) => {
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
     },
-  })
+  });
 
   let onSubmit = async (values) => {
-    try {
-      await signupMutation(values)
-      props.onSuccess?.()
-    } catch (error: any) {
-      if (error.code === "P2002" && error.meta?.target?.includes("email")) {
-        // This error comes from Prisma
-        return { email: "This email is already being used" }
-      } else {
-        return { [FORM_ERROR]: error.toString() }
-      }
-    }
-  }
+    await signupMutation(values);
+    props.onSuccess?.();
+    // try {
+    //   await signupMutation(values)
+    //   props.onSuccess?.()
+    // } catch (error: any) {
+    //   if (error.code === "P2002" && error.meta?.target?.includes("email")) {
+    //     // This error comes from Prisma
+    //     return { email: "This email is already being used" }
+    //   } else {
+    //     return { [FORM_ERROR]: error.toString() }
+    //   }
+    // }
+  };
 
   return (
     <Vertical>
@@ -64,7 +65,7 @@ export const SignupForm = (props: SignupFormProps) => {
         <Button type="submit">Submit</Button>
       </form>
     </Vertical>
-  )
-}
+  );
+};
 
-export default SignupForm
+export default SignupForm;
