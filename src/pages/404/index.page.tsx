@@ -1,8 +1,9 @@
 import { Container, Title, Text, Button, Group, rem, createStyles } from "@mantine/core";
-import { Illustration } from "./illustration";
+
 import Layout from "@/core/layouts/Layout";
 import Link from "next/link";
 import { Routes } from "@blitzjs/next";
+import { Illustration } from "./illustration";
 
 // import Head from "next/head";
 // import { ErrorComponent, Routes } from "@blitzjs/next";
