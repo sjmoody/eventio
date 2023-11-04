@@ -1,9 +1,9 @@
-import React, { Suspense, useState } from "react";
+import React, { useState } from "react";
 import { BlitzPage } from "@blitzjs/next";
 import Layout from "src/core/layouts/Layout";
 import { useMutation, useQuery } from "@blitzjs/rpc";
 import getTodos from "src/features/todos/queries/getTodos";
-import { Button, Checkbox, Input, List, Loader, Text } from "@mantine/core";
+import { Button, Checkbox, Input, List, Text } from "@mantine/core";
 import addTodo from "src/features/todos/mutations/addTodo";
 import { Horizontal, Vertical } from "mantine-layout-components";
 import { useCurrentUser } from "@/features/users/hooks/useCurrentUser";
