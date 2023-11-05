@@ -22,17 +22,18 @@ model Todo {
 }
 
 model User {
-  id             String   @id @default(uuid())
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id             String    @id @default(uuid())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
   name           String?
-  email          String   @unique
+  email          String    @unique
   hashedPassword String?
-  role           String   @default("USER")
-
-  tokens   Token[]
-  sessions Session[]
-  Todo     Todo[]
+  role           String    @default("USER")
+  username       String?   @unique
+  bio            String?
+  tokens         Token[]
+  sessions       Session[]
+  Todo           Todo[]
 }
 
 model Session {
