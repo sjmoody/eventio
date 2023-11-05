@@ -18,14 +18,14 @@
 - [x] Connect to production db
 - [x] Update Admin role
 - [x] Improve error and Authentication handling
-- [ ] Validate forms with Zod
+- [x] Validate forms with Zod
 
 ### User Profile
 
-- [ ] User Profile: Live Templates and Page creation
-- [ ] User Profile Page
-- [ ] Edit Profile Form
-- [ ] Edit Profile Page
+- [x] User Profile: Live Templates and Page creation
+- [x] User Profile Page
+- [x] Edit Profile Form
+- [x] Edit Profile Page
 
 ### Emails Part 1
 
