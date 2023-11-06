@@ -29,8 +29,8 @@
 
 ### Emails Part 1
 
-- [ ] Email Sending Logic
-- [ ] Catching local Email with Live Preview
+- [x] Email Sending Logic
+- [x] Catching local Email with Live Preview
 - [ ] Sending emails using React Email
 - [ ] Catching emails locally with Nodemailer app
 - [ ] Sending a Welcome Email
