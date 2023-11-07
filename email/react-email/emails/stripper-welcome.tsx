@@ -12,14 +12,14 @@ import {
   Text,
 } from "@react-email/components";
 import * as React from "react";
-import { ReactFC } from "~/types";
 
-const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
+const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "localhost:3009";
 
-export const StripperWelcomeEmail: ReactFC<{
-  content: string;
-  buttonText: string;
-}> = ({ content, buttonText }) => (
+export const StripperWelcomeEmail: React.FC<{
+  props: {
+    name?: string | null;
+  };
+}> = ({ props: { name } }) => (
   <Html>
     <Head />
     <Preview>You're now ready to make live transactions with Strippers!</Preview>
@@ -28,10 +28,10 @@ export const StripperWelcomeEmail: ReactFC<{
         <Section style={box}>
           <Img src={`${baseUrl}/static/stripe-logo.png`} width="49" height="21" alt="Stripe" />
           <Hr style={hr} />
-          <Text style={paragraph}>{content}</Text>
+          <Text style={paragraph}>Hey there {name}</Text>
 
           <Button pX={10} pY={10} style={button} href="https://dashboard.stripe.com/login">
-            {buttonText}
+            Click here to confirm your email
           </Button>
           <Hr style={hr} />
           <Text style={paragraph}>
