@@ -10,14 +10,8 @@ import adminOnlyMutation from "@/features/auth/mutations/adminOnlyMutation";
 
 const Home: BlitzPage = () => {
   const user = useCurrentUser();
-  const [$adminOnlyMutation] = useMutation(adminOnlyMutation);
 
-  return (
-    <Layout title="Home">
-      {user && user.isAdmin && <Vertical></Vertical>}
-      {!user && <MainAuthenticationForm />}
-    </Layout>
-  );
+  return <Layout title="Home">{!user && <MainAuthenticationForm />}</Layout>;
 };
 
 export default Home;
