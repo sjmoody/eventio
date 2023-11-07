@@ -34,7 +34,7 @@
 - [x] Sending emails using React Email
 - [x] Catching emails locally with Nodemailer app
 - [x] Sending a Welcome Email
-- [ ] Default props, clean up templates
+- [x] Default props, clean up templates
 - [ ] Typed .env
 - [ ] Gitignoring react-email things
 

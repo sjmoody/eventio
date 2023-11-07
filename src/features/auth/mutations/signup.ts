@@ -5,9 +5,10 @@ import { Role } from "types";
 
 import { SignupInput } from "../schemas";
 import { sendEmail } from "~/email/sendEmail";
-import StripperWelcomeEmail from "~/email/react-email/emails/stripper-welcome";
+
 import React from "react";
 import { PrismaError } from "@/utils/blitz-utils";
+import { WelcomeEmail } from "~/email/react-email/emails/welcome";
 
 export default resolver.pipe(resolver.zod(SignupInput), async (params, ctx) => {
   const { email, name, password } = params;
@@ -23,7 +24,7 @@ export default resolver.pipe(resolver.zod(SignupInput), async (params, ctx) => {
       await sendEmail({
         to: user.email,
         subject: "Welcome to Eventio",
-        react: React.createElement(StripperWelcomeEmail, {
+        react: React.createElement(WelcomeEmail, {
           props: {
             name: user.name,
           },
