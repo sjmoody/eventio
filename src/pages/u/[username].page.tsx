@@ -11,10 +11,11 @@ import { useDisclosure } from "@mantine/hooks";
 import { Form, useForm, zodResolver } from "@mantine/form";
 import updateProfile from "@/features/users/mutations/updateProfile";
 import { UpdateProfileInput, updateProfileInputType } from "@/features/users/schemas";
-import { showNotification } from "@mantine/notifications";
+import { notifications, showNotification } from "@mantine/notifications";
 import { useRouter } from "next/router";
 import { EditProfileForm } from "@/features/users/forms/EditProfileForm";
 import { IconAlertCircle } from "@tabler/icons-react";
+import requestVerificationEmail from "@/features/auth/mutations/requestVerificationEmail";
 
 export const ProfilePage: BlitzPage = () => {
   const username = useStringParam("username");
@@ -33,6 +34,8 @@ export const ProfilePage: BlitzPage = () => {
 
   const router = useRouter();
   const [$updateProfile, { isLoading }] = useMutation(updateProfile);
+  const [$requestVerificationEmail, { isLoading: isSendingEmail }] =
+    useMutation(requestVerificationEmail);
 
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -86,7 +89,20 @@ export const ProfilePage: BlitzPage = () => {
                   Your email is not verified. Please check your inbox for the welcome email we have
                   sent you.
                 </Text>
-                <Button size="xs" color="red" variant="light">
+                <Button
+                  loading={isSendingEmail}
+                  onClick={async () => {
+                    await $requestVerificationEmail();
+                    notifications.show({
+                      color: "green",
+                      title: "Success!",
+                      message: "Email Sent",
+                    });
+                  }}
+                  size="xs"
+                  color="red"
+                  variant="light"
+                >
                   Resend email
                 </Button>
               </Vertical>

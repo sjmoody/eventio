@@ -8,7 +8,7 @@ import { sendEmail } from "~/email/sendEmail";
 
 import React from "react";
 import { PrismaError } from "@/utils/blitz-utils";
-import { WelcomeEmail } from "~/email/react-email/emails/welcome";
+import { EmailTemplateWelcome } from "~/email/react-email/emails/welcome";
 
 export default resolver.pipe(resolver.zod(SignupInput), async (params, ctx) => {
   const { email, name, password } = params;
@@ -24,7 +24,7 @@ export default resolver.pipe(resolver.zod(SignupInput), async (params, ctx) => {
       await sendEmail({
         to: user.email,
         subject: "Welcome to Eventio",
-        react: React.createElement(WelcomeEmail, {
+        react: React.createElement(EmailTemplateWelcome, {
           props: {
             name: user.name,
           },
