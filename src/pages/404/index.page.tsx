@@ -3,7 +3,7 @@ import { Container, Title, Text, Button, Group, rem, createStyles } from "@manti
 import Layout from "@/core/layouts/Layout";
 import Link from "next/link";
 import { Routes } from "@blitzjs/next";
-import { Illustration } from "./illustration";
+import { Illustration } from "./Illustration";
 
 // import Head from "next/head";
 // import { ErrorComponent, Routes } from "@blitzjs/next";
