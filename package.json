@@ -8,7 +8,8 @@
     "db:migrate": "npx blitz prisma migrate dev",
     "db:studio": "npx blitz prisma studio",
     "build": "npx blitz prisma migrate deploy && npx blitz prisma generate && npx blitz build",
-    "railway:dev": "railway run npx dev"
+    "railway:dev": "railway run npx dev",
+    "email": "cd email/react-email && npm run dev -- --port 3009"
   },
   "prisma": {
     "schema": "db/schema.prisma"

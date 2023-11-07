@@ -31,8 +31,8 @@
 
 - [x] Email Sending Logic
 - [x] Catching local Email with Live Preview
-- [ ] Sending emails using React Email
-- [ ] Catching emails locally with Nodemailer app
+- [x] Sending emails using React Email
+- [x] Catching emails locally with Nodemailer app
 - [ ] Sending a Welcome Email
 - [ ] Default props, clean up templates
 - [ ] Typed .env
