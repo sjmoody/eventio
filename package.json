@@ -33,6 +33,7 @@
     "@mantine/next": "^6.0.21",
     "@mantine/notifications": "^6.0.21",
     "@prisma/client": "^4.6.1",
+    "@t3-oss/env-nextjs": "^0.7.1",
     "@tabler/icons-react": "^2.40.0",
     "blitz": "2.0.0-beta.34",
     "date-fns": "^2.30.0",

@@ -9,8 +9,10 @@ node_modules
 .pnp.*
 .npm
 web_modules/
-
 .idea/
+./email/react-email/node_modules
+./email/react-email/.react-email
+
 
 # blitz
 /.blitz/
