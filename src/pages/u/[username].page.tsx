@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "@/core/layouts/Layout";
 import { BlitzPage, Routes } from "@blitzjs/next";
 import { Vertical } from "mantine-layout-components";
-import { Box, Button, Group, Modal, Text, TextInput, Textarea } from "@mantine/core";
+import { Alert, Box, Button, Group, Modal, Text, TextInput, Textarea } from "@mantine/core";
 import { useStringParam } from "@/utils/utils";
 import { useMutation, useQuery } from "@blitzjs/rpc";
 import getUserForProfile from "@/features/users/queries/getUserForProfile";
@@ -14,6 +14,7 @@ import { UpdateProfileInput, updateProfileInputType } from "@/features/users/sch
 import { showNotification } from "@mantine/notifications";
 import { useRouter } from "next/router";
 import { EditProfileForm } from "@/features/users/forms/EditProfileForm";
+import { IconAlertCircle } from "@tabler/icons-react";
 
 export const ProfilePage: BlitzPage = () => {
   const username = useStringParam("username");
@@ -73,6 +74,24 @@ export const ProfilePage: BlitzPage = () => {
 
       <Layout>
         <Vertical>
+          {isOwner && !currentUser?.emailVerifiedAt && (
+            <Alert
+              variant="outline"
+              icon={<IconAlertCircle size="1rem" />}
+              title="Warning!"
+              color="red"
+            >
+              <Vertical>
+                <Text>
+                  Your email is not verified. Please check your inbox for the welcome email we have
+                  sent you.
+                </Text>
+                <Button size="xs" color="red" variant="light">
+                  Resend email
+                </Button>
+              </Vertical>
+            </Alert>
+          )}
           {isOwner && <Button onClick={open}>Edit profile</Button>}
           <Text>Hello {user.name}</Text>
           <Text>{user.bio}</Text>

@@ -40,11 +40,11 @@
 
 ### Debugging in production
 
-- [ ]
+- [x] Refactored package scripts
 
 ### Verify User Email
 
-- [ ] Check if user email is verified
+- [x] Check if user email is verified
 - [ ] Verify user email (part 1)
 - [ ] Verify user email (part 2)
 
