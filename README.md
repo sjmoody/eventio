@@ -46,7 +46,7 @@
 
 - [x] Check if user email is verified
 - [x] Verify user email (part 1)
-- [ ] Verify user email (part 2)
+- [x] Verify user email (part 2)
 
 ### Reset Password
 

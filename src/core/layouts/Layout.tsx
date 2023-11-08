@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { Suspense } from "react";
-import { BlitzLayout, ErrorBoundary, Routes } from "@blitzjs/next";
+import { ErrorBoundary, Routes } from "@blitzjs/next";
 import { Horizontal, Vertical } from "mantine-layout-components";
 import {
   Anchor,
@@ -21,7 +21,6 @@ import { ReactFC } from "~/types";
 import { IconUser, IconUserShield } from "@tabler/icons-react";
 import { RootErrorFallback } from "../components/RootErrorFallback";
 import { useRouter } from "next/router";
-import { FullPageLoader } from "../components/FullPageLoader";
 
 const Layout: ReactFC<{
   title?: string;
@@ -65,8 +64,8 @@ const Layout: ReactFC<{
                 <Horizontal center>
                   <Horizontal center spacing="xs">
                     <Link
-                      href={Routes.ProfilePage({
-                        username: user.username,
+                      href={Routes.EditProfilePage({
+                        username: user.name,
                       })}
                     >
                       <Text>{user.name}</Text>
