@@ -23,6 +23,7 @@ import { IconUser, IconUserShield } from "@tabler/icons-react";
 import { RootErrorFallback } from "../components/RootErrorFallback";
 import { useRouter } from "next/router";
 import Conditional from "conditional-wrap";
+import "@uploadthing/react/styles.css";
 
 const Layout: ReactFC<{
   title?: string;
