@@ -1,3 +1,4 @@
+import { Sign } from "crypto";
 import { z } from "zod";
 
 export const email = z
@@ -22,10 +23,14 @@ export const SignupInput = z.object({
   }),
 });
 
+export type SignupInputType = z.infer<typeof SignupInput>;
+
 export const LoginInput = z.object({
   email,
   password,
 });
+
+export type LoginInputType = z.infer<typeof LoginInput>;
 
 export const ForgotPasswordInput = z.object({
   email,

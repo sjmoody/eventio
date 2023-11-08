@@ -55,7 +55,7 @@
 
 ### Separate login and signup
 
-- [ ] Separate Login and Authentication forms
+- [x] Separate Login and Authentication forms
 
 ### Conditional wrapping
 
