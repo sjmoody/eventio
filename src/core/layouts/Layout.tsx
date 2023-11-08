@@ -5,6 +5,7 @@ import { Horizontal, Vertical } from "mantine-layout-components";
 import {
   Anchor,
   AppShell,
+  Box,
   Button,
   Footer,
   Header,
@@ -21,6 +22,7 @@ import { ReactFC } from "~/types";
 import { IconUser, IconUserShield } from "@tabler/icons-react";
 import { RootErrorFallback } from "../components/RootErrorFallback";
 import { useRouter } from "next/router";
+import Conditional from "conditional-wrap";
 
 const Layout: ReactFC<{
   title?: string;
@@ -63,13 +65,22 @@ const Layout: ReactFC<{
               {user && (
                 <Horizontal center>
                   <Horizontal center spacing="xs">
-                    <Link
-                      href={Routes.EditProfilePage({
-                        username: user.name,
-                      })}
+                    <Conditional
+                      condition={!!user.username}
+                      wrap={(children) => {
+                        return (
+                          <Link
+                            href={Routes.ProfilePage({
+                              username: user.username as string,
+                            })}
+                          >
+                            {children}
+                          </Link>
+                        );
+                      }}
                     >
                       <Text>{user.name}</Text>
-                    </Link>
+                    </Conditional>
                     {!user.isAdmin && (
                       <Tooltip label="User">
                         <IconUser size={15} />
