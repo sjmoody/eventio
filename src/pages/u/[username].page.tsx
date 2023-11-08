@@ -34,7 +34,7 @@ export const ProfilePage: BlitzPage = () => {
 
   const router = useRouter();
   const [$updateProfile, { isLoading }] = useMutation(updateProfile);
-  const [$requestVerificationEmail, { isLoading: isSendingEmail }] =
+  const [$requestVerificationEmail, { isLoading: isSendingEmail, isSuccess }] =
     useMutation(requestVerificationEmail);
 
   const [opened, { open, close }] = useDisclosure(false);
@@ -81,30 +81,40 @@ export const ProfilePage: BlitzPage = () => {
             <Alert
               variant="outline"
               icon={<IconAlertCircle size="1rem" />}
-              title="Warning!"
+              title={isSuccess ? "Email Sent" : "Warning"}
               color="red"
             >
               <Vertical>
-                <Text>
-                  Your email is not verified. Please check your inbox for the welcome email we have
-                  sent you.
-                </Text>
-                <Button
-                  loading={isSendingEmail}
-                  onClick={async () => {
-                    await $requestVerificationEmail();
-                    notifications.show({
-                      color: "green",
-                      title: "Success!",
-                      message: "Email Sent",
-                    });
-                  }}
-                  size="xs"
-                  color="red"
-                  variant="light"
-                >
-                  Resend email
-                </Button>
+                {!isSuccess && (
+                  <>
+                    <Text>
+                      Your email is not verified. Please check your inbox for the welcome email we
+                      have sent you.
+                    </Text>
+                    <Button
+                      loading={isSendingEmail}
+                      onClick={async () => {
+                        await $requestVerificationEmail();
+                        notifications.show({
+                          color: "green",
+                          title: "Success!",
+                          message: "Email Sent",
+                        });
+                      }}
+                      size="xs"
+                      color="red"
+                      variant="light"
+                    >
+                      Resend email
+                    </Button>
+                  </>
+                )}
+                {isSuccess && (
+                  <Text>
+                    The email has been sent and should arrive shortly. Please check your spam
+                    folder.
+                  </Text>
+                )}
               </Vertical>
             </Alert>
           )}

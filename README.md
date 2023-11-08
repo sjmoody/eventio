@@ -50,8 +50,8 @@
 
 ### Reset Password
 
-- [ ] Reset password (part 1)
-- [ ] Reset password (part 2)
+- [x] Reset password (part 1)
+- [x] Reset password (part 2)
 
 ### Separate login and signup
 

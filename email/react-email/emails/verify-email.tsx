@@ -19,7 +19,7 @@ const baseUrl = process.env.VERCEL_URL
 
 const defaultProps = {
   name: "test user",
-  emailVerifyUrl: "Test User",
+  emailVerifyUrl: "http://localhost:3000",
 };
 
 export const EmailTemplateVerifyEmail: React.FC<{
@@ -34,7 +34,7 @@ export const EmailTemplateVerifyEmail: React.FC<{
   return (
     <Html>
       <Head />
-      <Preview>Confirm your email address</Preview>
+      <Preview>Please verify your email for Eventio</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={box}>

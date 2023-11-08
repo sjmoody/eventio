@@ -1,71 +1,73 @@
 import Layout from "src/core/layouts/Layout";
 import resetPassword from "src/features/auth/mutations/resetPassword";
 import { BlitzPage, Routes } from "@blitzjs/next";
-import { useRouter } from "next/router";
+
 import { useMutation } from "@blitzjs/rpc";
 import Link from "next/link";
-import { assert } from "blitz";
-import { Button, PasswordInput, TextInput } from "@mantine/core";
-import { useForm } from "@mantine/form";
+
+import { Button, PasswordInput, Title, Text } from "@mantine/core";
+import { useForm, zodResolver } from "@mantine/form";
+import { ResetPasswordInput, ResetPasswordInputType } from "@/features/auth/schemas";
+import { useStringQueryParam } from "@/utils/utils";
+import { Vertical } from "mantine-layout-components";
 
 const ResetPasswordPage: BlitzPage = () => {
-  const router = useRouter();
-  const token = router.query.token?.toString();
-  const [resetPasswordMutation, { isSuccess }] = useMutation(resetPassword);
+  const token = useStringQueryParam("token");
+  const [$resetPassword, { isSuccess, isLoading }] = useMutation(resetPassword);
 
-  const form = useForm({
+  const form = useForm<ResetPasswordInputType>({
     initialValues: {
+      token: "",
       password: "",
       passwordConfirmation: "",
     },
-
-    validate: {},
+    validateInputOnBlur: true,
+    validate: zodResolver(ResetPasswordInput),
   });
 
-  let onSubmit = async (values) => {
-    assert(token, "token is required.");
-    await resetPasswordMutation({ ...values, token });
-    // try {
-    //   assert(token, "token is required.")
-    //   await resetPasswordMutation({ ...values, token })
-    // } catch (error: any) {
-    //   if (error.name === "ResetPasswordError") {
-    //     return {
-    //       [FORM_ERROR]: error.message,
-    //     }
-    //   } else {
-    //     return {
-    //       [FORM_ERROR]: "Sorry, we had an unexpected error. Please try again.",
-    //     }
-    //   }
-    // }
-  };
+  if (!token) return <Text>Invalid Token</Text>;
 
   return (
     <Layout title="Reset Your Password">
-      <div>
-        <h1>Set a New Password</h1>
+      <Vertical>
+        <Title order={3}>Set a New Password</Title>
 
-        {isSuccess ? (
-          <div>
-            <h2>Password Reset Successfully</h2>
+        {isSuccess && (
+          <Vertical>
+            <Title order={3}>Password Reset Successfully</Title>
             <p>
               Go to the <Link href={Routes.Home()}>homepage</Link>
             </p>
-          </div>
-        ) : (
-          <form onSubmit={form.onSubmit(onSubmit)}>
-            <PasswordInput withAsterisk label="New Password" {...form.getInputProps("password")} />
-            <PasswordInput
-              withAsterisk
-              label="Confirm New Password"
-              {...form.getInputProps("passwordConfirmation")}
-            />
+          </Vertical>
+        )}
 
-            <Button type="submit">Reset Password</Button>
+        {!isSuccess && (
+          <form
+            onSubmit={form.onSubmit(async (values) => {
+              await $resetPassword({ ...values, token: token as string });
+            })}
+          >
+            <Vertical fullW>
+              <PasswordInput
+                w="100%"
+                withAsterisk
+                label="New Password"
+                {...form.getInputProps("password")}
+              />
+              <PasswordInput
+                w="100%"
+                withAsterisk
+                label="Confirm New Password"
+                {...form.getInputProps("passwordConfirmation")}
+              />
+
+              <Button loading={isLoading} disabled={!form.isValid()} type="submit">
+                Reset Password
+              </Button>
+            </Vertical>
           </form>
         )}
-      </div>
+      </Vertical>
     </Layout>
   );
 };
