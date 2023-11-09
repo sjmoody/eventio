@@ -38,6 +38,7 @@ model User {
   tokens         Token[]
   sessions       Session[]
   Todo           Todo[]
+  onboarded      Boolean   @default(true)
 }
 
 model Session {

@@ -11,6 +11,7 @@ import {
   Header,
   Indicator,
   Loader,
+  Modal,
   Navbar,
   Text,
   Tooltip,
@@ -27,6 +28,7 @@ import "@uploadthing/react/styles.css";
 import { UserAvatar } from "../components/UserAvatar";
 import { ConditionalWrap as Conditional } from "@/utils/utils";
 import { UserProfileProgress } from "../components/header/UserProfileProgress";
+import { OnboardingWizard } from "../components/OnboardingWizard";
 
 const Layout: ReactFC<{
   title?: string;
@@ -150,6 +152,18 @@ const Layout: ReactFC<{
                 </Vertical>
               }
             >
+              <Modal
+                size="xl"
+                centered={true}
+                closeOnClickOutside={false}
+                closeOnEscape={false}
+                withCloseButton={false}
+                title="Onboarding modal"
+                opened={!user?.onboarded}
+                onClose={() => {}}
+              >
+                <OnboardingWizard />
+              </Modal>
               {children}
             </Suspense>
           </ErrorBoundary>
