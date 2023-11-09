@@ -1,8 +1,15 @@
 # Eventio
 
-## Open questions and issues
+A sandcastle built to learn how to build scaffolding.
 
-- How to update dependencies without breaking anything?
+## Lessons Learned so far
+
+- How to inline a package that is no longer maintained by the creators
+- Some best practices in auth land
+- Reasons devs choose a paid product over a free product
+- The virtues of TS in throwing early errors before build
+- The workarounds devs use to break the virtues of TS
+- How devs compulsively refactor or fix things that annoy them (like ugly design)
 
 ## Features to Build (versions)
 
@@ -10,7 +17,7 @@
 - [x] Style with Mantine
 - [x] Add Forms
 - [x] Nicer authentication pages
-- [x] Make nucer auth form functional
+- [x] Make nicer auth form functional
 - [x] Endpoint auth in Blitz and Zod
 - [x] Prisma db
 - [x] Roles based fetching
@@ -35,8 +42,8 @@
 - [x] Catching emails locally with Nodemailer app
 - [x] Sending a Welcome Email
 - [x] Default props, clean up templates
-- [ ] Typed .env
-- [ ] Gitignoring react-email things
+- [x] Typed .env
+- [x] Gitignoring react-email things
 
 ### Debugging in production
 
