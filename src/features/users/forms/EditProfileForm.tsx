@@ -4,8 +4,8 @@ import { Form, UseFormReturnType } from "@mantine/form";
 import { Button, TextInput, Textarea } from "@mantine/core";
 import { Vertical } from "mantine-layout-components";
 import { ReactFC } from "~/types";
-import { UploadButton } from "@/core/components/UploadThing";
-import { showNotification } from "@mantine/notifications";
+
+import { UploadThingFileInput } from "@/core/components/UploadThingFileInput";
 
 export const EditProfileForm: ReactFC<{
   form: UseFormReturnType<updateProfileInputType>;
@@ -41,28 +41,9 @@ export const EditProfileForm: ReactFC<{
           {...form.getInputProps("bio")}
           radius="md"
         />
-        <UploadButton
-          endpoint="imageUploader"
-          onClientUploadComplete={(res) => {
-            const key = res?.[0]?.key;
-            console.log("Files: ", res);
-            showNotification({
-              color: "green",
-              title: "Success",
-              message: "File uploaded!",
-            });
-            form.setFieldValue("avatarImageKey", key);
-          }}
-          onUploadError={(error: Error) => {
-            // Do something with the error.
-            console.log(error);
-            showNotification({
-              color: "red",
-              title: "Error",
-              message: "Error uploading file",
-            });
-          }}
-        />
+        <UploadThingFileInput form={form} name="avatarImageKey" label="Profile picture" />
+        <UploadThingFileInput form={form} name="coverImageKey" label="Cover Image" />
+
         <Button disabled={!form.isValid()} loading={isSubmitting} type="submit">
           Save
         </Button>

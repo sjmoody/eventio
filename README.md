@@ -66,9 +66,9 @@
 - [x] Uploadthing initial setup
 - [x] Use uploadthing inside a form
 - [x] Improve the Avatar component
-- [ ] Custom UI for the Image Upload
-- [ ] Allow the user to replace their profile image
-- [ ] Abstract Upload Logic in a separate component
+- [x] Custom UI for the Image Upload
+- [x] Allow the user to replace their profile image
+- [x] Abstract Upload Logic in a separate component
 
 ### Onboard user
 
