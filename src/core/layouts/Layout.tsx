@@ -21,10 +21,9 @@ import { ReactFC } from "~/types";
 import { IconUser, IconUserShield } from "@tabler/icons-react";
 import { RootErrorFallback } from "../components/RootErrorFallback";
 import { useRouter } from "next/router";
-import Conditional from "conditional-wrap";
 import "@uploadthing/react/styles.css";
-
 import { UserAvatar } from "../components/UserAvatar";
+import { ConditionalWrap as Conditional } from "@/utils/utils";
 
 const Layout: ReactFC<{
   title?: string;

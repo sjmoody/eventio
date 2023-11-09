@@ -4,6 +4,7 @@ import { addHours } from "date-fns";
 import db from "~/db";
 import { TokenType } from "@prisma/client"; // this might need to come from db
 import { useRouter } from "next/router";
+import React from "react";
 
 export const useStringParam = (name) => {
   let param = useParam(name, "string");
@@ -48,3 +49,6 @@ export const regenerateToken = async ({
   const token = await createToken({ userId, userEmail, tokenType });
   return token;
 };
+
+export const ConditionalWrap = ({ condition, children, wrap }) =>
+  condition ? React.cloneElement(wrap(children)) : children;

@@ -10,7 +10,8 @@
     "build": "npm run db:migrate && blitz prisma migrate deploy && npm run blitz prisma generate && npm run email-install-dependencies && npm run blitz build",
     "railway:dev": "railway run npx dev",
     "email": "cd email/react-email && npm run dev -- --port 3009",
-    "email-install-dependencies": "cd email/react-email && npm install"
+    "email-install-dependencies": "cd email/react-email && npm install",
+    "preinstall": "npx npm-force-resolutions"
   },
   "scripts": {
     "dev": "blitz dev",
@@ -48,7 +49,6 @@
     "@tabler/icons-react": "^2.40.0",
     "@uploadthing/react": "^5.7.0",
     "blitz": "2.0.0-beta.34",
-    "conditional-wrap": "^1.0.2",
     "date-fns": "^2.30.0",
     "mantine-layout-components": "^0.1.1",
     "next": "^14.0.1",
