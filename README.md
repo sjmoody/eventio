@@ -59,13 +59,13 @@
 
 ### Conditional wrapping
 
-- [ ] Conditional wrapping
+- [x] Conditional wrapping
 
 ### Upload Images
 
-- [ ] Uploadthing initial setup
-- [ ] Use uploadthing inside a form
-- [ ] Improve the Avatar component
+- [x] Uploadthing initial setup
+- [x] Use uploadthing inside a form
+- [x] Improve the Avatar component
 - [ ] Custom UI for the Image Upload
 - [ ] Allow the user to replace their profile image
 - [ ] Abstract Upload Logic in a separate component

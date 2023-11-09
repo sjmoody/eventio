@@ -5,7 +5,6 @@ import { Horizontal, Vertical } from "mantine-layout-components";
 import {
   Anchor,
   AppShell,
-  Box,
   Button,
   Footer,
   Header,
@@ -24,6 +23,8 @@ import { RootErrorFallback } from "../components/RootErrorFallback";
 import { useRouter } from "next/router";
 import Conditional from "conditional-wrap";
 import "@uploadthing/react/styles.css";
+
+import { UserAvatar } from "../components/UserAvatar";
 
 const Layout: ReactFC<{
   title?: string;
@@ -80,6 +81,9 @@ const Layout: ReactFC<{
                         );
                       }}
                     >
+                      <Horizontal>
+                        <UserAvatar user={user} />
+                      </Horizontal>
                       <Text>{user.name}</Text>
                     </Conditional>
                     {!user.isAdmin && (

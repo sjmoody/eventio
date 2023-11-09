@@ -16,7 +16,6 @@ import { useRouter } from "next/router";
 import { EditProfileForm } from "@/features/users/forms/EditProfileForm";
 import { IconAlertCircle } from "@tabler/icons-react";
 import requestVerificationEmail from "@/features/auth/mutations/requestVerificationEmail";
-import { UploadButton } from "@/core/components/UploadThing";
 
 export const ProfilePage: BlitzPage = () => {
   const username = useStringParam("username");
@@ -59,6 +58,7 @@ export const ProfilePage: BlitzPage = () => {
         <EditProfileForm
           form={form}
           onSubmit={async (values) => {
+            console.log("values", values);
             await $updateProfile(values);
             const { username } = values;
             if (username !== user.username) {
@@ -123,27 +123,6 @@ export const ProfilePage: BlitzPage = () => {
           {isOwner && <Button onClick={open}>Edit profile</Button>}
           <Text>Hello {user.name}</Text>
           <Text>{user.bio}</Text>
-          <UploadButton
-            endpoint="imageUploader"
-            onClientUploadComplete={(res) => {
-              // Do something with the response
-              console.log("Files: ", res);
-              notifications.show({
-                color: "green",
-                title: "Success",
-                message: "File uploaded!",
-              });
-            }}
-            onUploadError={(error: Error) => {
-              // Do something with the error.
-              console.log(error);
-              notifications.show({
-                color: "red",
-                title: "Error",
-                message: "Error uploading file",
-              });
-            }}
-          />
         </Vertical>
       </Layout>
     </>

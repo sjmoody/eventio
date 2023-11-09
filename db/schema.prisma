@@ -31,11 +31,12 @@ model User {
   role            String    @default("USER")
   emailVerifiedAt DateTime?
 
-  username String?   @unique
-  bio      String?
-  tokens   Token[]
-  sessions Session[]
-  Todo     Todo[]
+  username       String?   @unique
+  bio            String?
+  avatarImageKey String?
+  tokens         Token[]
+  sessions       Session[]
+  Todo           Todo[]
 }
 
 model Session {
