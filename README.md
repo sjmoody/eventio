@@ -72,7 +72,7 @@
 
 ### Onboard user
 
-- [ ] Nudge user to finish their profiles
+- [x] Nudge user to finish their profiles
 - [ ] Onboarding user modal
 
 ### Modals

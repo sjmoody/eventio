@@ -5,9 +5,11 @@ import { Horizontal, Vertical } from "mantine-layout-components";
 import {
   Anchor,
   AppShell,
+  Box,
   Button,
   Footer,
   Header,
+  Indicator,
   Loader,
   Navbar,
   Text,
@@ -24,6 +26,7 @@ import { useRouter } from "next/router";
 import "@uploadthing/react/styles.css";
 import { UserAvatar } from "../components/UserAvatar";
 import { ConditionalWrap as Conditional } from "@/utils/utils";
+import { UserProfileProgress } from "../components/header/UserProfileProgress";
 
 const Layout: ReactFC<{
   title?: string;
@@ -81,20 +84,30 @@ const Layout: ReactFC<{
                       }}
                     >
                       <Horizontal>
-                        <UserAvatar user={user} />
+                        <Conditional
+                          condition={user.isAdmin}
+                          wrap={(children) => (
+                            <Indicator
+                              color="none"
+                              position="bottom-end"
+                              label={
+                                <Tooltip label="Admin">
+                                  <Box>
+                                    <IconUserShield size={13} />
+                                  </Box>
+                                </Tooltip>
+                              }
+                            >
+                              {children}
+                            </Indicator>
+                          )}
+                        >
+                          <UserAvatar user={user} />
+                        </Conditional>
+                        <Text>{user.name}</Text>
+                        <UserProfileProgress />
                       </Horizontal>
-                      <Text>{user.name}</Text>
                     </Conditional>
-                    {!user.isAdmin && (
-                      <Tooltip label="User">
-                        <IconUser size={15} />
-                      </Tooltip>
-                    )}
-                    {user.isAdmin && (
-                      <Tooltip label="Admin">
-                        <IconUserShield size={15} />
-                      </Tooltip>
-                    )}
                   </Horizontal>
 
                   <Button

@@ -17,7 +17,7 @@ export const EditProfilePage: BlitzPage = () => {
 
   const router = useRouter();
 
-  const [user] = useQuery(getUserForEditingProfile, {}, { enabled: false });
+  const [user] = useQuery(getUserForEditingProfile, {});
 
   const form = useForm<updateProfileInputType>({
     initialValues: {

@@ -8,8 +8,6 @@ export default resolver.pipe(
   async (params, { session: { userId } }) => {
     const { todoTitle } = params;
 
-    console.log("creating a todo with title", todoTitle);
-
     const todo = db.todo.create({
       data: {
         title: todoTitle,
