@@ -28,6 +28,20 @@ const Home: BlitzPage = () => {
       <Button
         onClick={() => {
           openContextModal({
+            modal: GlobalModal.stackedModal,
+            title: "Stacked Modal",
+            innerProps: {
+              price: 120,
+            },
+          });
+        }}
+      >
+        Click here to go see a stacked modal
+      </Button>
+
+      <Button
+        onClick={() => {
+          openContextModal({
             modal: GlobalModal.becomePro,
             title: "Become Pro",
             innerProps: {
