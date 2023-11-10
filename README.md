@@ -87,8 +87,8 @@ A sandcastle built to learn how to build scaffolding.
 ### Modals
 
 - [x] Global modals
-- [ ] Stacking modals
-- [ ] Delete confirmation modal
+- [x] Stacking modals
+- [x] Delete confirmation modal
 
 ### Styling with Mantine Part 2
 

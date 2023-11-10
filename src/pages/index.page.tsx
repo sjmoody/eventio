@@ -5,9 +5,15 @@ import { useCurrentUser } from "src/features/users/hooks/useCurrentUser";
 import { openContextModal } from "@mantine/modals";
 import { GlobalModal } from "@/modals";
 import { Button } from "@mantine/core";
+import { confirmDelete } from "@/utils/mantine-utils";
+import { useMutation } from "@blitzjs/rpc";
 
 const Home: BlitzPage = () => {
   const user = useCurrentUser();
+
+  const deleteAccountMutation = () => {
+    console.log("Account deleted");
+  };
 
   return (
     <Layout title="Home">
@@ -15,42 +21,17 @@ const Home: BlitzPage = () => {
       <Button
         color="red"
         onClick={() => {
-          openContextModal({
-            modal: GlobalModal.reportBug,
-            title: "Report a Bug",
-
-            innerProps: {},
-          });
-        }}
-      >
-        Click here to report a bug
-      </Button>
-      <Button
-        onClick={() => {
-          openContextModal({
-            modal: GlobalModal.stackedModal,
-            title: "Stacked Modal",
-            innerProps: {
-              price: 120,
+          confirmDelete(
+            () => {
+              deleteAccountMutation();
             },
-          });
+            {
+              confirmLabel: "Delete Account frfr",
+            }
+          );
         }}
       >
-        Click here to go see a stacked modal
-      </Button>
-
-      <Button
-        onClick={() => {
-          openContextModal({
-            modal: GlobalModal.becomePro,
-            title: "Become Pro",
-            innerProps: {
-              price: 120,
-            },
-          });
-        }}
-      >
-        Click here to go pro
+        Delete Account
       </Button>
     </Layout>
   );
