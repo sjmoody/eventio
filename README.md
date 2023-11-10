@@ -17,6 +17,9 @@ A sandcastle built to learn how to build scaffolding.
 - for vampires, light mode == flashbang
 - virtue of Mantine: every part of a component can be styled separately
 - Recommendation: design for dark mode only before shipping MVP. Otherwise design can take 2x longer
+- Typescript allows you to make a type that creates a de facto whitelist of values
+- Resend api slow rolling bulk emails
+- Resend makes it easy to create emails with React components
 
 ## Features to Build (versions)
 
@@ -111,7 +114,7 @@ A sandcastle built to learn how to build scaffolding.
 ### Emails Part 2
 
 - [x] User settings for product/marketing emails
-- [ ] Reusable email components
+- [x] Reusable email components
 - [ ] Unsubscribe link
 
 ## Tech Stack
