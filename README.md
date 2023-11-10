@@ -102,7 +102,7 @@ A sandcastle built to learn how to build scaffolding.
 
 - [x] Mantine themes
 - [x] Mantine styles 1: overview of docs
-- [?] Mantine styles 2
+- [Missing] Mantine styles 2
 - [x] Light and Dark mode
 
 ### User Settings
@@ -115,7 +115,7 @@ A sandcastle built to learn how to build scaffolding.
 
 - [x] User settings for product/marketing emails
 - [x] Reusable email components
-- [ ] Unsubscribe link
+- ? Unsubscribe link
 
 ## Tech Stack
 
