@@ -5,6 +5,7 @@ import { Horizontal, Vertical } from "mantine-layout-components";
 import {
   Anchor,
   AppShell,
+  Badge,
   Box,
   Button,
   Footer,
@@ -29,6 +30,8 @@ import { UserAvatar } from "../components/UserAvatar";
 import { ConditionalWrap as Conditional } from "@/utils/utils";
 import { UserProfileProgress } from "../components/header/UserProfileProgress";
 import { OnboardingWizard } from "../components/OnboardingWizard";
+import { openContextModal } from "@mantine/modals";
+import { GlobalModal } from "@/modals";
 
 const Layout: ReactFC<{
   title?: string;
@@ -107,9 +110,24 @@ const Layout: ReactFC<{
                           <UserAvatar user={user} />
                         </Conditional>
                         <Text>{user.name}</Text>
+
                         <UserProfileProgress />
                       </Horizontal>
                     </Conditional>
+                    <Badge
+                      onClick={() => {
+                        openContextModal({
+                          modal: GlobalModal.becomePro,
+                          title: "Become a pro",
+                          innerProps: {
+                            price: 95,
+                          },
+                        });
+                      }}
+                      color="red"
+                    >
+                      Pro
+                    </Badge>
                   </Horizontal>
 
                   <Button

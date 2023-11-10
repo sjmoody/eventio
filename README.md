@@ -10,6 +10,8 @@ A sandcastle built to learn how to build scaffolding.
 - The virtues of TS in throwing early errors before build
 - The workarounds devs use to break the virtues of TS
 - How devs compulsively refactor or fix things that annoy them (like ugly design)
+- The tedious triple accounting seems to be inevitable in many languages
+- How to convert a Webstorm template into a VS Code snippet
 
 ## Features to Build (versions)
 
@@ -84,7 +86,7 @@ A sandcastle built to learn how to build scaffolding.
 
 ### Modals
 
-- [ ] Global modals
+- [x] Global modals
 - [ ] Stacking modals
 - [ ] Delete confirmation modal
 

@@ -1,17 +1,45 @@
 import Layout from "src/core/layouts/Layout";
 import { BlitzPage } from "@blitzjs/next";
-
-import { Vertical } from "mantine-layout-components";
 import { MainAuthenticationForm } from "src/core/components/MainAuthenticationForm";
 import { useCurrentUser } from "src/features/users/hooks/useCurrentUser";
+import { openContextModal } from "@mantine/modals";
+import { GlobalModal } from "@/modals";
 import { Button } from "@mantine/core";
-import { useMutation } from "@blitzjs/rpc";
-import adminOnlyMutation from "@/features/auth/mutations/adminOnlyMutation";
 
 const Home: BlitzPage = () => {
   const user = useCurrentUser();
 
-  return <Layout title="Home">{!user && <MainAuthenticationForm />}</Layout>;
+  return (
+    <Layout title="Home">
+      {!user && <MainAuthenticationForm />}
+      <Button
+        color="red"
+        onClick={() => {
+          openContextModal({
+            modal: GlobalModal.reportBug,
+            title: "Report a Bug",
+
+            innerProps: {},
+          });
+        }}
+      >
+        Click here to report a bug
+      </Button>
+      <Button
+        onClick={() => {
+          openContextModal({
+            modal: GlobalModal.becomePro,
+            title: "Become Pro",
+            innerProps: {
+              price: 120,
+            },
+          });
+        }}
+      >
+        Click here to go pro
+      </Button>
+    </Layout>
+  );
 };
 
 export default Home;
