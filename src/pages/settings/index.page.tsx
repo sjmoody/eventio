@@ -5,6 +5,7 @@ import { Vertical } from "mantine-layout-components";
 import { Tabs, Text } from "@mantine/core";
 import { IconMail, IconSettings, IconUserCog } from "@tabler/icons-react";
 import { ChangePassword } from "./components/ChangePassword";
+import { UserEmailSettings } from "./components/UserEmailSettings";
 
 export const SettingsPage: BlitzPage = () => {
   return (
@@ -30,6 +31,7 @@ export const SettingsPage: BlitzPage = () => {
 
           <Tabs.Panel value="email" pt="xs">
             Email
+            <UserEmailSettings />
           </Tabs.Panel>
 
           <Tabs.Panel value="profile" pt="xs">

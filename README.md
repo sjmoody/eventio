@@ -110,7 +110,7 @@ A sandcastle built to learn how to build scaffolding.
 
 ### Emails Part 2
 
-- [ ] User settings for product/marketing emails
+- [x] User settings for product/marketing emails
 - [ ] Reusable email components
 - [ ] Unsubscribe link
 

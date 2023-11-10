@@ -39,6 +39,10 @@ model User {
   sessions       Session[]
   Todo           Todo[]
   onboarded      Boolean   @default(true)
+
+  //settings
+  settingsEmailMarketing Boolean @default(true)
+  settingsEmailProduct   Boolean @default(true)
 }
 
 model Session {
