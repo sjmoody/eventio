@@ -16,6 +16,7 @@ A sandcastle built to learn how to build scaffolding.
 - Can useMantineTheme hook to access the theme variables anywhere, but not needed for most Mantine components
 - for vampires, light mode == flashbang
 - virtue of Mantine: every part of a component can be styled separately
+- Recommendation: design for dark mode only before shipping MVP. Otherwise design can take 2x longer
 
 ## Features to Build (versions)
 
@@ -98,8 +99,8 @@ A sandcastle built to learn how to build scaffolding.
 
 - [x] Mantine themes
 - [x] Mantine styles 1: overview of docs
-- [ ] Mantine styles 2
-- [ ] Light and Dark mode
+- [?] Mantine styles 2
+- [x] Light and Dark mode
 
 ### User Settings
 

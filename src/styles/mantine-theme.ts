@@ -7,7 +7,7 @@ const ButtonDefaultProps: Partial<ButtonProps> = {
 };
 
 export const theme: MantineThemeOverride = {
-  colorScheme: "dark",
+  // colorScheme: "dark", remove to make this variable
   cursorType: "pointer",
   loader: "bars",
   primaryColor: "violet", // default colors: https://v6.mantine.dev/theming/colors/#default-colors

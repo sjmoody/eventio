@@ -32,6 +32,7 @@ import { UserProfileProgress } from "../components/header/UserProfileProgress";
 import { OnboardingWizard } from "../components/OnboardingWizard";
 import { openContextModal } from "@mantine/modals";
 import { GlobalModal } from "@/modals";
+import { DarkLightSwitch } from "../components/DarkLightSwitch";
 
 const Layout: ReactFC<{
   title?: string;
@@ -129,7 +130,7 @@ const Layout: ReactFC<{
                       Pro
                     </Badge>
                   </Horizontal>
-
+                  <DarkLightSwitch />
                   <Button
                     size="xs"
                     variant="light"
