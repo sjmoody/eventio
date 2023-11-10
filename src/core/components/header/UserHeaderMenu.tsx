@@ -50,8 +50,11 @@ export const UserHeaderMenu = () => {
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Label>Application</Menu.Label>
-        <MenuItemIcon Icon={IconSettings}>Settings</MenuItemIcon>
+        <Menu.Label>Account</Menu.Label>
+
+        <MenuItemLink Icon={IconSettings} href={Routes.SettingsPage()}>
+          Settings
+        </MenuItemLink>
         <MenuItemLink Icon={IconPencil} href={Routes.EditProfilePage()}>
           Edit Profile
         </MenuItemLink>
@@ -66,7 +69,7 @@ export const UserHeaderMenu = () => {
           </MenuItemLink>
         )}
 
-        <Menu.Item
+        {/* <Menu.Item
           icon={<IconSearch size={14} />}
           rightSection={
             <Text size="xs" color="dimmed">
@@ -75,7 +78,7 @@ export const UserHeaderMenu = () => {
           }
         >
           Search
-        </Menu.Item>
+        </Menu.Item> */}
 
         <Menu.Divider />
 

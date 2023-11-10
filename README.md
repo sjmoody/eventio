@@ -105,7 +105,7 @@ A sandcastle built to learn how to build scaffolding.
 ### User Settings
 
 - [x] Header User menu
-- [ ] Settings with vertical tabs
+- [x] Settings with vertical tabs
 - [ ] Change password for logged-in user
 
 ### Emails Part 2
