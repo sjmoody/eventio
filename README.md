@@ -15,7 +15,7 @@ A sandcastle built to learn how to build scaffolding.
 - Mantine theme uses a syntax that requires 10 shades for every color, "red.5"
 - Can useMantineTheme hook to access the theme variables anywhere, but not needed for most Mantine components
 - for vampires, light mode == flashbang
--
+- virtue of Mantine: every part of a component can be styled separately
 
 ## Features to Build (versions)
 
@@ -97,7 +97,7 @@ A sandcastle built to learn how to build scaffolding.
 ### Styling with Mantine Part 2
 
 - [x] Mantine themes
-- [ ] Mantine styles 1
+- [x] Mantine styles 1: overview of docs
 - [ ] Mantine styles 2
 - [ ] Light and Dark mode
 
