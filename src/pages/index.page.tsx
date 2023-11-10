@@ -19,7 +19,7 @@ const Home: BlitzPage = () => {
     <Layout title="Home">
       {!user && <MainAuthenticationForm />}
       <Button
-        color="red"
+        color="red.8"
         onClick={() => {
           confirmDelete(
             () => {

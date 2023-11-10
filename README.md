@@ -12,6 +12,10 @@ A sandcastle built to learn how to build scaffolding.
 - How devs compulsively refactor or fix things that annoy them (like ugly design)
 - The tedious triple accounting seems to be inevitable in many languages
 - How to convert a Webstorm template into a VS Code snippet
+- Mantine theme uses a syntax that requires 10 shades for every color, "red.5"
+- Can useMantineTheme hook to access the theme variables anywhere, but not needed for most Mantine components
+- for vampires, light mode == flashbang
+-
 
 ## Features to Build (versions)
 
@@ -92,7 +96,7 @@ A sandcastle built to learn how to build scaffolding.
 
 ### Styling with Mantine Part 2
 
-- [ ] Mantine themes
+- [x] Mantine themes
 - [ ] Mantine styles 1
 - [ ] Mantine styles 2
 - [ ] Light and Dark mode

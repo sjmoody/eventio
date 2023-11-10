@@ -3,6 +3,7 @@ import { Button } from "@mantine/core";
 import { ContextModalProps } from "@mantine/modals";
 import { Horizontal, Vertical } from "mantine-layout-components";
 import { ReactFC } from "~/types";
+
 type InnerProps = {
   price: number;
 };
