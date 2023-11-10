@@ -1,13 +1,9 @@
 import React from "react";
 import { Box, Button, Indicator, Menu, Text, Tooltip } from "@mantine/core";
 import {
-  IconArrowsLeftRight,
-  IconMessageCircle,
+  IconLogout,
   IconPencil,
-  IconPhoto,
-  IconSearch,
   IconSettings,
-  IconTrash,
   IconUser,
   IconUserShield,
 } from "@tabler/icons-react";
@@ -17,9 +13,15 @@ import { UserAvatar } from "../UserAvatar";
 import { useCurrentUser } from "@/features/users/hooks/useCurrentUser";
 import { MenuItemIcon, MenuItemLink } from "../MenuItems";
 import { Routes } from "@blitzjs/next";
+import { useMutation } from "@blitzjs/rpc";
+import logout from "@/features/auth/mutations/logout";
+import { useRouter } from "next/router";
 
 export const UserHeaderMenu = () => {
   const user = useCurrentUser();
+  const [$logout] = useMutation(logout);
+  const router = useRouter();
+
   if (!user) return null;
 
   return (
@@ -69,24 +71,17 @@ export const UserHeaderMenu = () => {
           </MenuItemLink>
         )}
 
-        {/* <Menu.Item
-          icon={<IconSearch size={14} />}
-          rightSection={
-            <Text size="xs" color="dimmed">
-              ⌘K
-            </Text>
-          }
-        >
-          Search
-        </Menu.Item> */}
-
         <Menu.Divider />
-
-        <Menu.Label>Danger zone</Menu.Label>
-        <Menu.Item icon={<IconArrowsLeftRight size={14} />}>Transfer my data</Menu.Item>
-        <Menu.Item color="red" icon={<IconTrash size={14} />}>
-          Delete my account
-        </Menu.Item>
+        <MenuItemIcon
+          Icon={IconLogout}
+          onClick={async () => {
+            await $logout();
+            router.push("/");
+          }}
+          color="red.3"
+        >
+          Log Out
+        </MenuItemIcon>
       </Menu.Dropdown>
     </Menu>
   );

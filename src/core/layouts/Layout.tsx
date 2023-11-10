@@ -26,8 +26,7 @@ import { IconUser, IconUserShield } from "@tabler/icons-react";
 import { RootErrorFallback } from "../components/RootErrorFallback";
 import { useRouter } from "next/router";
 import "@uploadthing/react/styles.css";
-import { UserAvatar } from "../components/UserAvatar";
-import { ConditionalWrap as Conditional } from "@/utils/utils";
+
 import { UserProfileProgress } from "../components/header/UserProfileProgress";
 import { OnboardingWizard } from "../components/OnboardingWizard";
 import { openContextModal } from "@mantine/modals";
@@ -40,7 +39,6 @@ const Layout: ReactFC<{
   maxWidth?: number;
 }> = ({ title, maxWidth = 800, children }) => {
   const thisYear = new Date().getFullYear();
-  const [$logout] = useMutation(logout);
 
   const user = useCurrentUser();
 
@@ -112,16 +110,6 @@ const Layout: ReactFC<{
                     </Badge>
                   </Horizontal>
                   {/* <DarkLightSwitch /> */}
-                  {/* <Button
-                    size="xs"
-                    variant="light"
-                    onClick={async () => {
-                      await $logout();
-                      router.push("/");
-                    }}
-                  >
-                    Logout
-                  </Button> */}
                 </Horizontal>
               )}
             </Horizontal>
@@ -159,7 +147,7 @@ const Layout: ReactFC<{
                 closeOnEscape={false}
                 withCloseButton={false}
                 title="Onboarding modal"
-                opened={!user?.onboarded}
+                opened={user && !user?.onboarded}
                 onClose={() => {}}
               >
                 <OnboardingWizard />
