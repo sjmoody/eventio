@@ -147,7 +147,7 @@ const Layout: ReactFC<{
                 closeOnEscape={false}
                 withCloseButton={false}
                 title="Onboarding modal"
-                opened={user && !user?.onboarded}
+                opened={!!user && !user?.onboarded}
                 onClose={() => {}}
               >
                 <OnboardingWizard />
