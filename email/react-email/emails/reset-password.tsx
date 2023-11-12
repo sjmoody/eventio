@@ -35,7 +35,7 @@ export const EmailTemplateResetPassword: React.FC<{
   return (
     <Html>
       <Head />
-      <Preview>Reset your password for Eventio</Preview>
+      <Preview>Reset your password for Remote Martech Jobs</Preview>
       <Body style={emailStyles.main}>
         <Container style={emailStyles.container}>
           <Section style={emailStyles.box}>

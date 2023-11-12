@@ -21,13 +21,13 @@ export const EmailTemplateWelcome: React.FC<{
   return (
     <Html>
       <Head />
-      <Preview>Welcome to Eventio</Preview>
+      <Preview>Welcome to Remote Martech Jobs</Preview>
       <Body style={emailStyles.main}>
         <Container style={emailStyles.container}>
           <Section style={emailStyles.box}>
             <Header />
             <Text style={emailStyles.paragraph}>{greeting}, welcome to our platform</Text>
-            <MainButton href="https://dashboard.stripe.com/login">
+            <MainButton href="remotemartechjobs.com/login">
               Click here to verify your account
             </MainButton>
             <Footer />

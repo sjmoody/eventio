@@ -35,7 +35,7 @@ export const SignupForm: ReactFC<{
     <Vertical mih="100vh" fullH fullW center>
       <Paper radius="md" p="xl" withBorder>
         <Text size="lg" fw={500}>
-          Welcome to Eventio, register with
+          Welcome to Remote Martech Jobs. You can register with
         </Text>
 
         <SocialButtonsAuth />

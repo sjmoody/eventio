@@ -2,36 +2,16 @@ import Head from "next/head";
 import React, { Suspense } from "react";
 import { ErrorBoundary, Routes } from "@blitzjs/next";
 import { Horizontal, Vertical } from "mantine-layout-components";
-import {
-  Anchor,
-  AppShell,
-  Badge,
-  Box,
-  Button,
-  Footer,
-  Header,
-  Indicator,
-  Loader,
-  Modal,
-  Navbar,
-  Text,
-  Tooltip,
-} from "@mantine/core";
+import { Anchor, AppShell, Badge, Footer, Header, Loader, Text } from "@mantine/core";
 import Link from "next/link";
-import { useMutation } from "@blitzjs/rpc";
-import logout from "src/features/auth/mutations/logout";
+
 import { useCurrentUser } from "src/features/users/hooks/useCurrentUser";
 import { ReactFC } from "~/types";
-import { IconUser, IconUserShield } from "@tabler/icons-react";
+
 import { RootErrorFallback } from "../components/RootErrorFallback";
 import { useRouter } from "next/router";
 import "@uploadthing/react/styles.css";
 
-import { UserProfileProgress } from "../components/header/UserProfileProgress";
-import { OnboardingWizard } from "../components/OnboardingWizard";
-import { openContextModal } from "@mantine/modals";
-import { GlobalModal } from "@/modals";
-import { DarkLightSwitch } from "../components/DarkLightSwitch";
 import { UserHeaderMenu } from "../components/header/UserHeaderMenu";
 
 const Layout: ReactFC<{
@@ -47,17 +27,12 @@ const Layout: ReactFC<{
   return (
     <>
       <Head>
-        <title>{title || "eventio"}</title>
+        <title>{title || "RemoteMartechJobs.com"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <AppShell
         padding="md"
-        // navbar={
-        //   <Navbar width={{ base: 300 }} height={500} p="xs">
-        //     {/* Navbar content */}
-        //   </Navbar>
-        // }
         header={
           <Header height={55} p="xs">
             <Horizontal fullH spaceBetween fullW>
@@ -68,48 +43,16 @@ const Layout: ReactFC<{
                 href={Routes.Home()}
                 fw="bold"
               >
-                Eventio
+                Remote Martech Jobs
               </Anchor>
 
               {user && (
                 <Horizontal center>
                   <Horizontal center spacing="xs">
-                    {/* <Conditional
-                      condition={!!user.username}
-                      wrap={(children) => {
-                        return (
-                          <Link
-                            href={Routes.ProfilePage({
-                              username: user.username as string,
-                            })}
-                          >
-                            {children}
-                          </Link>
-                        );
-                      }}
-                    > */}
                     <Horizontal>
                       <UserHeaderMenu />
-
-                      <UserProfileProgress />
                     </Horizontal>
-
-                    <Badge
-                      onClick={() => {
-                        openContextModal({
-                          modal: GlobalModal.becomePro,
-                          title: "Become a pro",
-                          innerProps: {
-                            price: 95,
-                          },
-                        });
-                      }}
-                      color="red"
-                    >
-                      Pro
-                    </Badge>
                   </Horizontal>
-                  {/* <DarkLightSwitch /> */}
                 </Horizontal>
               )}
             </Horizontal>
@@ -140,18 +83,6 @@ const Layout: ReactFC<{
                 </Vertical>
               }
             >
-              <Modal
-                size="xl"
-                centered={true}
-                closeOnClickOutside={false}
-                closeOnEscape={false}
-                withCloseButton={false}
-                title="Onboarding modal"
-                opened={user && !user?.onboarded}
-                onClose={() => {}}
-              >
-                <OnboardingWizard />
-              </Modal>
               {children}
             </Suspense>
           </ErrorBoundary>

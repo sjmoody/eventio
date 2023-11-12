@@ -22,7 +22,7 @@ export const EmailTemplateVerifyEmail: React.FC<{
   return (
     <Html>
       <Head />
-      <Preview>Please verify your email for Eventio</Preview>
+      <Preview>Please verify your email for Remote Martech Jobs</Preview>
       <Body style={emailStyles.main}>
         <Container style={emailStyles.container}>
           <Section style={emailStyles.box}>
