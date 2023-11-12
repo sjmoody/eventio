@@ -7,6 +7,7 @@ import {
   Group,
   Button,
   Divider,
+  Checkbox,
   Anchor,
   Stack,
 } from "@mantine/core";
@@ -36,7 +37,7 @@ export const LoginForm: ReactFC<{
     <Vertical mih="100vh" fullH fullW center>
       <Paper radius="md" p="xl" withBorder>
         <Text size="lg" fw={500}>
-          Welcome to Remote Martech Jobs. You can login with
+          Welcome to Eventio, login with
         </Text>
         <SocialButtonsAuth />
 

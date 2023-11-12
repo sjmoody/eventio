@@ -13,9 +13,9 @@ const anchor = {
 export const Footer = () => {
   return (
     <>
-      <Text style={emailStyles.paragraph}>— The RemoteMartechJobs.com team</Text>
+      <Text style={emailStyles.paragraph}>— The Eventio team</Text>
       <Hr style={emailStyles.hr} />
-      <Text style={footer}>RemoteMartechJobs.com, Somewhere in the south of France</Text>
+      <Text style={footer}>Eventio, Somewhere in the south of France</Text>
     </>
   );
 };

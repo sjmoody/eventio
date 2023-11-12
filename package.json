@@ -1,7 +1,18 @@
 {
-  "name": "rmj-zts",
-  "author": "sjmoody",
-  "version": "0.2.0",
+  "name": "eventio",
+  "version": "1.0.0",
+  "scripts_old": {
+    "dev": "blitz dev",
+    "start": "blitz start",
+    "studio": "blitz prisma studio",
+    "db:migrate": "npx blitz prisma migrate dev",
+    "db:studio": "npx blitz prisma studio",
+    "build": "npm run db:migrate && blitz prisma migrate deploy && npm run blitz prisma generate && npm run email-install-dependencies && npm run blitz build",
+    "railway:dev": "railway run npx dev",
+    "email": "cd email/react-email && npm run dev -- --port 3009",
+    "email-install-dependencies": "cd email/react-email && npm install",
+    "preinstall": "npx npm-force-resolutions"
+  },
   "scripts": {
     "dev": "blitz dev",
     "email": "cd email/react-email && npm run dev -- --port 3009",

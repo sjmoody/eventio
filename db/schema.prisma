@@ -10,52 +10,15 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model JobPosting {
-  id             String    @id @default(uuid())
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  datePosted     DateTime? // for Google schema. Expects ISO 8601 format
-  validThrough   DateTime? // for Google schema. Expects ISO 8601 format. If job posting never expires or you do not know when it expires, then do not include this property.
-  employmentType String // for Google schema. Options: FULL_TIME, PART_TIME, CONTRACTOR, TEMPORARY, INTERN, VOLUNTEER, PER_DIEM, OTHER
+model Todo {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  done      Boolean  @default(false)
 
-  title                           String // for Google schema. Expects simple string
-  description                     String //for Google schema. Expects HTML
-  applicationLocationRequirements String // for Google schema. Looks like object. If this is present then jobLocation not required. For remote, must specify at least one country where applicants are eligible to work.
-
-  jobLocationType      String       @default("TELECOMMUTE") // for Google schema. Example is "TELECOMMUTE". Likely most of my jobs will be this. Required for remote jobs
-  baseSalary           String // for Google schema. Looks like object. Only use if salary is known. Expects object of type MonetaryAmount. Must include currency and value
-  directApply          Boolean // Indicates whether the URL that's associated with this job posting enables direct application for the job.
-  timezone             String // mine
-  tags                 String[] //mine
-  estimatedMinSalary   Int // mine. Used for front end filtering
-  ApplyURL             String //mine. Used for link to apply
-  featured             Boolean // good idea? use for promoting
-  hiringOrganization   Organization @relation(fields: [hiringOrganizationId], references: [id])
-  hiringOrganizationId String
-
-  // employerName String // add to hiring org
-  //   companyLogo String // add to hiring org
-  //   companyUrl  String // add to hiring org
-  // jobType                         String // replaced by employmentType
-  // addressOne                      String // mine
-  // addressTwo                      String // mine
-  // published Boolean  good idea but replaced by datePosted
-
-  // userId String? // from todos
-  // user User? @relation(fields: [userId], references: [id]) //from todos
-  // User   User?   @relation(fields: [userId], references: [id])
-}
-
-// for Google schema. Expects object of type Organization. add rmj logo otherwise it will show the hiring org logo @relation(fields: [organizationId], references: [id]) @relation(fields: [organizationId], references: [id]) @relation(fields: [organizationId], references: [id]) @relation(fields: [organizationId], references: [id]) @relation(fields: [organizationId], references: [id]) @relation(fields: [organizationId], references: [id]) @relation(fields: [organizationId], references: [id]) @relation(fields: [organizationId], references: [id]) @relation(fields: [organizationId], references: [id])
-model Organization {
-  id          String       @id @default(uuid())
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  type        String       @default("Organization")
-  name        String
-  logo        String
-  url         String
-  JobPostings JobPosting[]
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
 }
 
 model User {
@@ -67,17 +30,19 @@ model User {
   hashedPassword  String?
   role            String    @default("USER")
   emailVerifiedAt DateTime?
-  username        String?   @unique
-  bio             String?
-  avatarImageKey  String?
-  coverImageKey   String?
-  tokens          Token[]
-  sessions        Session[]
 
-  // onboarded      Boolean   @default(true)
-  // //settings
-  // settingsEmailMarketing Boolean @default(true)
-  // settingsEmailProduct   Boolean @default(true)
+  username       String?   @unique
+  bio            String?
+  avatarImageKey String?
+  coverImageKey  String?
+  tokens         Token[]
+  sessions       Session[]
+  Todo           Todo[]
+  onboarded      Boolean   @default(true)
+
+  //settings
+  settingsEmailMarketing Boolean @default(true)
+  settingsEmailProduct   Boolean @default(true)
 }
 
 model Session {
@@ -111,6 +76,9 @@ model Token {
   @@unique([hashedToken, type])
 }
 
+// NOTE: It's highly recommended to use an enum for the token type
+//       but enums only work in Postgres.
+//       See: https://blitzjs.com/docs/database-overview#switch-to-postgre-sql
 enum TokenType {
   RESET_PASSWORD
   VERIFY_EMAIL

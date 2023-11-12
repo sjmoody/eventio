@@ -1,4 +1,5 @@
 import { Group } from "@mantine/core";
+import { Vertical } from "mantine-layout-components";
 import React from "react";
 import { GoogleButton, TwitterButton } from "./SocialButtons";
 

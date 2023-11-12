@@ -27,7 +27,7 @@ export default resolver.pipe(resolver.zod(ForgotPasswordInput), async ({ email }
 
     await sendEmail({
       to: user.email,
-      subject: "Reset your password for RemoteMartechJobs.com",
+      subject: "Reset your password for Eventio",
       react: React.createElement(EmailTemplateResetPassword, {
         props: {
           resetPasswordUrl,
